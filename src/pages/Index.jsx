@@ -152,38 +152,40 @@ const Index = () => {
 
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-50">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Control Gauge</h3>
-          <div className="flex items-center gap-2">
-            <Slider
-              value={[gaugeValue]}
-              onValueChange={(value) => setGaugeValue(value[0])}
-              max={100}
-              step={1}
-              className="flex-grow"
-              styles={{
-                track: {
-                  height: '10px',
-                  backgroundColor: '#e2e8f0',
-                  borderRadius: '5px',
-                },
-                range: {
-                  backgroundColor: '#8b5cf6',
-                },
-                thumb: {
-                  width: '24px',
-                  height: '24px',
-                  backgroundColor: '#8b5cf6',
-                  border: '2px solid #fff',
-                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                },
-              }}
-            />
-            <span className="text-sm sm:text-base font-semibold text-purple-700 w-12 text-right">{gaugeValue}%</span>
+      <>
+        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-50">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Control Gauge</h3>
+            <div className="flex items-center gap-2">
+              <Slider
+                value={[gaugeValue]}
+                onValueChange={(value) => setGaugeValue(value[0])}
+                max={100}
+                step={1}
+                className="flex-grow"
+                styles={{
+                  track: {
+                    height: '10px',
+                    backgroundColor: '#e2e8f0',
+                    borderRadius: '5px',
+                  },
+                  range: {
+                    backgroundColor: '#8b5cf6',
+                  },
+                  thumb: {
+                    width: '24px',
+                    height: '24px',
+                    backgroundColor: '#8b5cf6',
+                    border: '2px solid #fff',
+                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                  },
+                }}
+              />
+              <span className="text-sm sm:text-base font-semibold text-purple-700 w-12 text-right">{gaugeValue}%</span>
+            </div>
           </div>
         </div>
-      </div>
+      </>
       </div>
     </div>
   );
