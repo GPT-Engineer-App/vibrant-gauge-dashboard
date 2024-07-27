@@ -19,9 +19,9 @@ const Index = () => {
 
   const data2 = [
     { name: 'Item 1', value1: 10, value2: 10, value3: 15, value4: 15 },
-    { name: 'Item 2', value1: 10, value2: 10, value3: 15, value4: 15 },
-    { name: 'Item 3', value1: 10, value2: 10, value3: 15, value4: 15 },
-    { name: 'Item 4', value1: 10, value2: 10, value3: 15, value4: 15 },
+    { name: 'Item 2', value1: 12, value2: 8, value3: 18, value4: 12 },
+    { name: 'Item 3', value1: 8, value2: 12, value3: 12, value4: 18 },
+    { name: 'Item 4', value1: 15, value2: 5, value3: 20, value4: 10 },
   ];
 
   const data3 = [
@@ -33,12 +33,12 @@ const Index = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const factor = gaugeValue / 100;
-      setAnimatedData2(data2.map(item => ({
+      setAnimatedData2(data2.map((item, index) => ({
         ...item,
-        value1: item.value1 * factor,
-        value2: item.value2 * factor,
-        value3: item.value3 * factor,
-        value4: item.value4 * factor,
+        value1: item.value1 * factor * (1 + index * 0.1),
+        value2: item.value2 * factor * (1 + (4 - index) * 0.05),
+        value3: item.value3 * factor * (1 + Math.sin(index * Math.PI / 4)),
+        value4: item.value4 * factor * (1 + Math.cos(index * Math.PI / 4)),
       })));
       setAnimatedData3(Array.from({ length: 24 }, (_, i) => i < Math.floor(24 * factor)));
       setAnimatedData4(data3.map(item => ({
@@ -150,55 +150,40 @@ const Index = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
-          <div className="bg-purple-100 p-4 rounded-lg">
-            <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Data 5</h3>
-            <p className="text-xs sm:text-sm text-gray-600 mb-2">Include data like percentages and average.</p>
-            <div className="relative h-[100px] sm:h-[140px] w-[200px] sm:w-[280px] mx-auto">
-              <svg className="absolute inset-0" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <clipPath id="clippath">
-                    <path d="M0,140C0,62.68,62.68,0,140,0s140,62.68,140,140h-50.4c0-49.48-40.11-89.6-89.6-89.6s-89.6,40.11-89.6,89.6H0Z"/>
-                  </clipPath>
-                </defs>
-                <g clipPath="url(#clippath)">
-                  <rect fill="#ff5732" x="-28" y="-14" width="336" height="168"/>
-                </g>
-              </svg>
-              <div 
-                className="absolute left-1/2 bottom-0 w-[21px] sm:w-[29.5px] h-[90px] sm:h-[127px] origin-bottom transition-transform duration-300"
-                style={{ transform: `translateX(-50%) rotate(${(gaugeValue / 100) * 180 - 90}deg)` }}
-              >
-                <svg viewBox="0 0 29.5 127" xmlns="http://www.w3.org/2000/svg">
-                  <g clipPath="url(#SVGID_00000010311719144933993520000012574870140054810267_)">
-                    <g>
-                      <clipPath id="needleClip">
-                        <path d="M28.3,113.2c0,7.7-6.3,13.9-14,13.8c-7.7,0-13.9-6.3-13.8-14L12.1,3.2c0-1,0.5-1.9,1.4-2.4c0.9-0.5,1.9-0.5,2.8,0c0.9,0.5,1.4,1.4,1.4,2.4L28.3,113.2z"/>
-                      </clipPath>
-                      <g clipPath="url(#needleClip)">
-                        <rect x="-178" y="-19.7" transform="matrix(0.8864 -0.463 0.463 0.8864 -30.8259 1.9776)" fill="#563AEF" width="333.3" height="167"/>
-                      </g>
-                    </g>
-                  </g>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-purple-100 p-4 rounded-lg">
-            <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Control Gauge</h3>
-            <div className="flex items-center gap-2">
-              <Slider
-                value={[gaugeValue]}
-                onValueChange={(value) => setGaugeValue(value[0])}
-                max={100}
-                step={1}
-                className="flex-grow"
-              />
-              <span className="text-sm sm:text-base font-semibold text-purple-700 w-12 text-right">{gaugeValue}%</span>
-            </div>
+        </div>
+      </div>
+      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-50">
+        <div className="max-w-4xl mx-auto">
+          <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Control Gauge</h3>
+          <div className="flex items-center gap-2">
+            <Slider
+              value={[gaugeValue]}
+              onValueChange={(value) => setGaugeValue(value[0])}
+              max={100}
+              step={1}
+              className="flex-grow"
+              styles={{
+                track: {
+                  height: '10px',
+                  backgroundColor: '#e2e8f0',
+                  borderRadius: '5px',
+                },
+                range: {
+                  backgroundColor: '#8b5cf6',
+                },
+                thumb: {
+                  width: '24px',
+                  height: '24px',
+                  backgroundColor: '#8b5cf6',
+                  border: '2px solid #fff',
+                  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                },
+              }}
+            />
+            <span className="text-sm sm:text-base font-semibold text-purple-700 w-12 text-right">{gaugeValue}%</span>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
