@@ -108,28 +108,50 @@ const Index = () => {
         <div className="bg-purple-100 p-6 rounded-lg mb-8">
           <h3 className="text-2xl font-semibold text-purple-700 mb-4">Data 5</h3>
           <p className="text-gray-600 mb-4">Include data like percentages and average. It helps the reader get insight about the topic.</p>
-          <div className="relative h-32">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-48 h-24 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded-full"></div>
+          <div className="relative h-[140px] w-[280px] mx-auto">
+            <svg className="absolute inset-0" viewBox="0 0 280 140" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <clipPath id="clippath">
+                  <path d="M0,140C0,62.68,62.68,0,140,0s140,62.68,140,140h-50.4c0-49.48-40.11-89.6-89.6-89.6s-89.6,40.11-89.6,89.6H0Z"/>
+                </clipPath>
+              </defs>
+              <rect fill="#fff" x="-28" y="-14" width="336" height="168"/>
+              <g clipPath="url(#clippath)">
+                <rect fill="#ff5732" x="-28" y="-14" width="336" height="168"/>
+              </g>
+            </svg>
+            <div 
+              className="absolute left-1/2 bottom-0 w-[29.5px] h-[127px] origin-bottom"
+              style={{ transform: `translateX(-50%) rotate(${(gaugeValue / 100) * 180 - 90}deg)` }}
+            >
+              <svg viewBox="0 0 29.5 127" xmlns="http://www.w3.org/2000/svg">
+                <g clipPath="url(#SVGID_00000010311719144933993520000012574870140054810267_)">
+                  <g>
+                    <clipPath id="needleClip">
+                      <path d="M28.3,113.2c0,7.7-6.3,13.9-14,13.8c-7.7,0-13.9-6.3-13.8-14L12.1,3.2c0-1,0.5-1.9,1.4-2.4c0.9-0.5,1.9-0.5,2.8,0c0.9,0.5,1.4,1.4,1.4,2.4L28.3,113.2z"/>
+                    </clipPath>
+                    <g clipPath="url(#needleClip)">
+                      <rect x="-178" y="-19.7" transform="matrix(0.8864 -0.463 0.463 0.8864 -30.8259 1.9776)" fill="#563AEF" width="333.3" height="167"/>
+                    </g>
+                  </g>
+                </g>
+              </svg>
             </div>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-44 h-20 bg-white rounded-full"></div>
-            </div>
-            <div
-              className="absolute top-1/2 left-1/2 w-1 h-20 bg-blue-600 origin-bottom transform -translate-x-1/2 -translate-y-full"
-              style={{ rotate: `${(gaugeValue / 100) * 180 - 90}deg` }}
-            ></div>
           </div>
         </div>
 
         <div className="bg-purple-100 p-6 rounded-lg">
           <h3 className="text-2xl font-semibold text-purple-700 mb-4">Control Gauge</h3>
-          <Slider
-            value={[gaugeValue]}
-            onValueChange={(value) => setGaugeValue(value[0])}
-            max={100}
-            step={1}
-          />
+          <div className="flex items-center gap-4">
+            <Slider
+              value={[gaugeValue]}
+              onValueChange={(value) => setGaugeValue(value[0])}
+              max={100}
+              step={1}
+              className="flex-grow"
+            />
+            <span className="text-lg font-semibold text-purple-700">{gaugeValue}%</span>
+          </div>
         </div>
       </div>
     </div>
