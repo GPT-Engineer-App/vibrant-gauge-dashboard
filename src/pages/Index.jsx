@@ -92,11 +92,16 @@ const Index = () => {
           </div>
 
           <div className="bg-purple-100 p-6 rounded-lg">
-            <h3 className="text-2xl font-semibold text-purple-700 mb-4">Data 3</h3>
+            <h3 className="text-2xl font-semibold text-purple-700 mb-4">Data 2</h3>
             <p className="text-gray-600 mb-4">Include data like percentages and average. It helps the reader get insight about the topic.</p>
-            <div className="grid grid-cols-6 gap-1">
+            <div className="grid grid-cols-6 gap-2">
               {animatedData3.map((active, i) => (
-                <div key={i} className={`w-full pt-full rounded-full ${active ? (i < 12 ? 'bg-red-400' : i < 18 ? 'bg-orange-400' : 'bg-yellow-400') : 'bg-gray-200'}`}></div>
+                <div key={i} className="w-full aspect-[29.5/53.8]">
+                  <svg viewBox="0 0 29.5 53.8" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M14.7,0C12,0,9.6,2.1,9.6,5.1v1.5c0,2.7,2.4,5.1,5.1,5.1s5.1-2.4,5.1-5.1V5.1C19.9,2.1,17.5,0,14.7,0" fill={active ? "#FF5732" : "#EABC49"} />
+                    <path d="M9.6,23c0,0-0.3-0.3-0.3,0l-3.6,8.5c-0.6,1.2-1.8,2.1-3.3,2.1H0.8c-0.3,0-0.6,0-0.6-0.3c-0.3-0.3-0.3-0.6,0-0.9l4.5-10.6l1.5-4.2c1.2-2.4,3.6-4.2,6.4-4.2h4.2c2.7,0,5.1,1.8,6.4,4.2l1.5,4.2l4.5,10.6c0.3,0.3,0.3,0.6,0,0.9c0,0.3-0.3,0.3-0.6,0.3h-1.5c-1.5,0-2.7-0.9-3.3-2.1L20.2,23c0-0.3-0.3,0-0.3,0l1.5,10.6l1.8,19.3c0,0.3-0.3,0.3-0.3,0.6c-0.3,0-0.3,0.3-0.6,0.3h-1.2c-1.8,0-3.3-1.2-3.3-3l-2.7-16.3h-0.6l-2.7,16.3c0,1.8-1.5,3-3.3,3H7.2c-0.3,0-0.3-0.3-0.6-0.3c0-0.3-0.3-0.3-0.3-0.6l1.8-19.3L9.6,23L9.6,23z" fill={active ? "#FF5732" : "#EABC49"} />
+                  </svg>
+                </div>
               ))}
             </div>
           </div>
