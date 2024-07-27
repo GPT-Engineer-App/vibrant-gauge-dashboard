@@ -1,7 +1,7 @@
 // Update this page (the content is just a fallback if you fail to update the page)
 
 import { useState, useEffect } from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 import { Slider } from "@/components/ui/slider";
 
 const Index = () => {
@@ -18,10 +18,10 @@ const Index = () => {
   ];
 
   const data2 = [
-    { name: 'Item 1', value1: 10, value2: 20, value3: 30 },
-    { name: 'Item 2', value1: 15, value2: 25, value3: 35 },
-    { name: 'Item 3', value1: 20, value2: 30, value3: 40 },
-    { name: 'Item 4', value1: 25, value2: 35, value3: 45 },
+    { name: 'Item 1', value1: 10, value2: 10, value3: 15, value4: 15 },
+    { name: 'Item 2', value1: 10, value2: 10, value3: 15, value4: 15 },
+    { name: 'Item 3', value1: 10, value2: 10, value3: 15, value4: 15 },
+    { name: 'Item 4', value1: 10, value2: 10, value3: 15, value4: 15 },
   ];
 
   const data3 = [
@@ -38,6 +38,7 @@ const Index = () => {
         value1: item.value1 * factor,
         value2: item.value2 * factor,
         value3: item.value3 * factor,
+        value4: item.value4 * factor,
       })));
       setAnimatedData3(Array.from({ length: 24 }, (_, i) => i < Math.floor(24 * factor)));
       setAnimatedData4(data3.map(item => ({
@@ -75,17 +76,38 @@ const Index = () => {
 
           <div className="bg-purple-100 p-4 rounded-lg">
             <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Data 2</h3>
-            <p className="text-xs sm:text-sm text-gray-600 mb-2">Include data like percentages and average.</p>
-            <div className="h-40 sm:h-48">
+            <p className="text-xs sm:text-sm text-gray-600 mb-2">Include data like percentages and average. It helps the reader get insight about the topic.</p>
+            <div className="h-48 sm:h-56">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={animatedData2}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" tick={{fontSize: 10}} />
-                  <YAxis tick={{fontSize: 10}} />
+                <BarChart
+                  data={animatedData2}
+                  layout="vertical"
+                  barSize={20}
+                  barGap={0}
+                >
+                  <XAxis type="number" domain={[0, 50]} hide />
+                  <YAxis dataKey="name" type="category" width={50} axisLine={false} tickLine={false} />
                   <Tooltip />
-                  <Bar dataKey="value1" stackId="a" fill="#8884d8" />
-                  <Bar dataKey="value2" stackId="a" fill="#82ca9d" />
-                  <Bar dataKey="value3" stackId="a" fill="#ffc658" />
+                  <Bar dataKey="value1" stackId="a">
+                    {animatedData2.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill="#FFA500" /> // Orange
+                    ))}
+                  </Bar>
+                  <Bar dataKey="value2" stackId="a">
+                    {animatedData2.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill="#FF4500" /> // Red-Orange
+                    ))}
+                  </Bar>
+                  <Bar dataKey="value3" stackId="a">
+                    {animatedData2.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill="#8A2BE2" /> // Blue Violet
+                    ))}
+                  </Bar>
+                  <Bar dataKey="value4" stackId="a">
+                    {animatedData2.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill="#4B0082" /> // Indigo
+                    ))}
+                  </Bar>
                 </BarChart>
               </ResponsiveContainer>
             </div>
