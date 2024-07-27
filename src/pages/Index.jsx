@@ -50,9 +50,8 @@ const Index = () => {
   }, [gaugeValue]);
 
   return (
-    <div className="relative min-h-screen">
-      <div className="p-4 bg-purple-50">
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-4 sm:p-6">
+    <div className="p-4 bg-purple-50 min-h-screen">
+      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-4 sm:p-6">
         <h1 className="text-2xl sm:text-3xl font-bold text-center text-purple-700 mb-1">It's all about the</h1>
         <h2 className="text-3xl sm:text-4xl font-bold text-center text-purple-900 mb-2">Informational Data Infographic</h2>
         <p className="text-sm sm:text-base text-center text-gray-600 mb-4">
@@ -152,11 +151,11 @@ const Index = () => {
         </div>
 
         </div>
-        </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-50">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Control Gauge</h3>
+      <>
+        <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-50">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Control Gauge</h3>
             <div className="flex items-center gap-2">
               <Slider
                 value={[gaugeValue]}
@@ -186,7 +185,7 @@ const Index = () => {
             </div>
           </div>
         </div>
-      </div>
+      </>
     </div>
   );
 };
