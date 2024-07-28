@@ -111,7 +111,6 @@ const Index = () => {
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
-            </div>
           </div>
         </div>
 
@@ -154,10 +153,9 @@ const Index = () => {
         </div>
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-50">
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Control Gauge</h3>
-            <div className="flex items-center gap-2">
+      <div className="fixed bottom-0 left-0 right-0 bg-white shadow-lg p-4 z-50 max-w-4xl mx-auto">
+        <h3 className="text-lg sm:text-xl font-semibold text-purple-700 mb-2">Control Gauge</h3>
+        <div className="flex items-center gap-2">
               <Slider
                 value={[gaugeValue]}
                 onValueChange={(value) => setGaugeValue(value[0])}
