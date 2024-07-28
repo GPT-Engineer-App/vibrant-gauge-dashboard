@@ -183,7 +183,6 @@ const Index = () => {
               <span className="text-sm sm:text-base font-semibold text-purple-700 w-12 text-right">{gaugeValue}%</span>
             </div>
         </div>
-      </div>
     </>
   );
 };
